@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Contacto - Cristina</title>
+   <link rel="stylesheet" href="css/web.css">
+</head>
+<body>
+   <header>
+      <div class="logo">
+         <a href="index.html"><img src="CONTENIDO/logo.PNG" width="50px"></a>
+      </div>
+      <div>
+         <h1>Conacto</h1>
+      </div>
+      <nav>
+         <ul>
+            <li><a href="actriz.html">Actriz</a></li>
+            <li><a href="clown.html">Clown</a></li>
+            <li><a href="educacion.html">Educación</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+         </ul>
+      </nav>
+   </header>
+   <section class="contenido">
+      <form id="formulario_contacto">
+         <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Nombre del/la interesado/a">
+         </div>
+         <div>
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required placeholder="Correo electrónico">
+         </div>
+         <div>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+         </div>
+         <div>
+            <button type="submit">Enviar</button>
+         </div>
+      </form>
+   </section>
+   <footer>
+      <div class="pie">
+          <p>&copy; Cristina Graos. Todos los derechos reservados.</p>
+          <ul class="redes">
+              <li><a href="https://wa.me/651685734"><img src="CONTENIDO/logo-wp.webp" width="20px"></a></li>
+              <li><a href="https://www.instagram.com/cristi_graos/"><img src="CONTENIDO/logoinst.png" width="20px"></a></li>
+          </ul>
+      </div>
+      <a href="#top" class="flecha-arriba">↑</a>
+  </footer>
+   <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+    <script>
+   (function(){
+      emailjs.init("yLwjmsrntPMn-N4N6"); // Coloca aquí tu User ID
+   })();
+   let formulario = document.getElementById('formulario_contacto');
+   formulario.addEventListener('submit', function(event) {
+      event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+      // Obtener los valores del formulario
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const mensaje = document.getElementById('mensaje').value;
+      
+      // Usa emailjs para enviar el correo
+      emailjs.send("service_yrlgoib", "template_h4bmu5l", {
+         nombre: nombre,
+         email: email,
+         mensaje: mensaje
+      })
+      .then(function(response) {
+         console.log('Correo enviado con éxito', response.status, response.text);
+         alert('Tu mensaje ha sido enviado.');
+      }, function(error) {
+         console.error('Error al enviar el correo:', error);
+         alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
+      });
+   });
+</script>
+</body>
+</html>
